@@ -11,7 +11,7 @@ def mostrar_encabezado(texto):
 
 def demo_persona():
 	mostrar_encabezado("Demostración: Persona (público, protegido, privado)")
-	persona = Persona(nombre="Ana", dni="12345678X", edad=30)
+	persona = Persona(nombre="Patricia", dni="12345678X", edad=30)
 
 	print("Nombre (público):", persona.nombre)
 	print("Edad via property (privado con property):", persona.edad)

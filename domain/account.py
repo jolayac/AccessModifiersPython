@@ -28,6 +28,7 @@ class CuentaBancaria:
 
     def transferir_a(self, otra_cuenta, monto, pin):
         if not isinstance(otra_cuenta, CuentaBancaria):
+            # Error del profe. Debería ser (f"{otra_cuenta} debe ser CuentaBancaria")
             raise TypeError("otra_cuenta debe ser CuentaBancaria")
         self.retirar(monto, pin)
         otra_cuenta.depositar(monto)
@@ -55,8 +56,8 @@ class CuentaBancaria:
         self._validar_pin_formato(pin)
         self.__pin = pin
 
-
     # --- Serialización simple para RTDB ---
+
     def to_dict(self):
         """
         Serializa el estado público/exportable de la cuenta.
@@ -81,4 +82,3 @@ class CuentaBancaria:
         # Ajustamos saldo directamente (uso interno controlado)
         inst._saldo = saldo
         return inst
-

@@ -17,7 +17,8 @@ def main():
     # Carga variables de entorno desde .env si existe
     load_dotenv()
     # Composición (inyección manual): dominio -> VM -> vista
-    cuenta = CuentaBancaria(numero_cuenta="001", titular="Alice", pin_inicial="1234")
+    cuenta = CuentaBancaria(numero_cuenta="001",
+                            titular="Alice", pin_inicial="1234")
     # Si las variables de entorno de Firebase están configuradas, el servicio funcionará; si no, puedes comentar esta línea.
     storage = None
     try:
@@ -31,5 +32,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

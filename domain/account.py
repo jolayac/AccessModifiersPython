@@ -10,14 +10,17 @@ class CuentaBancaria:
         self._saldo = 0  # protegido (convención)
         self.__pin = None  # privado (name mangling)
         self.__establecer_pin_inicial(pin_inicial)
+#
 
     @property
     def saldo(self):
         return self._saldo
+#
 
     def depositar(self, monto):
         self._validar_monto(monto)
         self._saldo += monto
+#
 
     def retirar(self, monto, pin):
         self._validar_monto(monto)
@@ -25,6 +28,7 @@ class CuentaBancaria:
         if monto > self._saldo:
             raise ValueError("Fondos insuficientes")
         self._saldo -= monto
+#
 
     def transferir_a(self, otra_cuenta, monto, pin):
         if not isinstance(otra_cuenta, CuentaBancaria):
@@ -32,26 +36,31 @@ class CuentaBancaria:
             raise TypeError("otra_cuenta debe ser CuentaBancaria")
         self.retirar(monto, pin)
         otra_cuenta.depositar(monto)
+#
 
     def cambiar_pin(self, pin_actual, pin_nuevo):
         self._requerir_pin(pin_actual)
         self._validar_pin_formato(pin_nuevo)
         self.__pin = pin_nuevo
-
+#
     # --- Protegidos ---
+
     def _validar_monto(self, monto):
         if not isinstance(monto, (int, float)) or monto <= 0:
             raise ValueError("El monto debe ser un número positivo")
+#
 
     def _requerir_pin(self, pin):
         if pin != self.__pin:
             raise PermissionError("PIN incorrecto")
+#
 
     def _validar_pin_formato(self, pin):
         if not isinstance(pin, str) or len(pin) < 4:
             raise ValueError("El PIN debe ser una cadena de 4+ caracteres")
-
+#
     # --- Privados ---
+
     def __establecer_pin_inicial(self, pin):
         self._validar_pin_formato(pin)
         self.__pin = pin
@@ -68,6 +77,7 @@ class CuentaBancaria:
             "titular": self.titular,
             "saldo": self._saldo,
         }
+#
 
     @classmethod
     def from_dict(cls, data):

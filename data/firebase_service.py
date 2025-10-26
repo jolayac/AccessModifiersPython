@@ -51,7 +51,7 @@ class FirebaseRealtimeService:
 
             firebase_admin.initialize_app(cred, {"databaseURL": db_url})
 
-    # --- CRUD básico ---
+    # --- CRUD (Create, Read, Update, Delete) básico ---
     def _ref(self, key: Optional[str] = None):
         path = self.base_path if key is None else f"{self.base_path}/{key}"
         return db.reference(path)
